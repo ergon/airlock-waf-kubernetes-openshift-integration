@@ -1,0 +1,13 @@
+FROM k8s.gcr.io/echoserver:1.10
+
+RUN mkdir /certs && \
+    chgrp -R 0 /certs && \
+    chmod -R g=u /certs
+
+RUN chgrp -R 0 /var/lib/nginx && \
+    chmod -R g=u /var/lib/nginx
+
+RUN chgrp -R 0 /run && \
+    chmod -R g=u /run
+
+USER 1001

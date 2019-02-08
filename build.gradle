@@ -1,0 +1,63 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.M4'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
+
+group 'com.airlock.waf.kubernetes'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+    //maven { url "https://nexus.ergon.ch/repository/releases/" }
+    flatDir {
+        dirs "${rootProject.projectDir}/lib"
+    }
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter-integration',
+            'org.springframework.boot:spring-boot-starter-web'
+    )
+    compileOnly(
+            'org.projectlombok:lombok'
+    )
+    compile (
+            'io.kubernetes:client-java:2.0.0',
+            'com.google.guava:guava:26.0-jre',
+            'ch.ergon:restal-jsonapi:1.0.3',
+            'org.reflections:reflections:0.9.9',
+            'org.apache.httpcomponents:httpclient:4.5.6',
+            'com.fasterxml.jackson.core:jackson-annotations:2.9.4',
+            'com.fasterxml.jackson.core:jackson-core:2.9.4',
+            'com.fasterxml.jackson.core:jackson-databind:2.9.4',
+            'javax.inject:javax.inject:1'
+    )
+}
+
+docker {
+    dependsOn build
+    name "${project.group}/${bootJar.baseName}"
+    dockerfile file('src/main/resources/Dockerfile.eventlistener')
+    files bootJar.archivePath
+    buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
+}

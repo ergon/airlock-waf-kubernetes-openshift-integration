@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: echoserver-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: echoserver
+        partition: poc
+    spec:
+      containers:
+      - name: echoserver
+        image: k8s.gcr.io/echoserver:1.10
+        ports:
+        - containerPort: 8080

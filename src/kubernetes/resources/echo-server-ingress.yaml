@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echoserver-ingress
+  labels:
+    partition: poc
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    waf.airlock.com/mapping.name: root
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: myminikube.info
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: echoserver-service
+          servicePort: 8080

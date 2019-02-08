@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: echoserver-route
+  labels:
+    partition: poc
+  annotations:
+    waf.airlock.com/mapping.name: root
+spec:
+  host: myminishift.info
+  to:
+    kind: Service
+    name: echoserver-service

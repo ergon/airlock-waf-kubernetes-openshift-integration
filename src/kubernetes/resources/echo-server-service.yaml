@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver-service
+  labels:
+    app: echoserver
+    partition: poc
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: echoserver

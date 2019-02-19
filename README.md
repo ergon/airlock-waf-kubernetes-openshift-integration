@@ -3,6 +3,7 @@ To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or
 * place Airlock WAF in front of a Kubernetes or OpenShift environment
 * use Ingress in case of Kubernetes or Route in case of OpenShift
 * listen on Ingress or Route events and create an Airlock WAF configuration via REST API
+* use metadata annotations and ConfigMap for parameterization
 
 ![Blueprint](docs/blueprint.png)
 
@@ -33,6 +34,14 @@ has been implemented in _OpenShiftV1Api.java_
 The following sections describe how to test the setup in a local environment. In case of Kubernetes 
 it requires minikube and the ingress addon and in case of OpenShift it requires minishift. As back-end application an
 HTTP echo server will be deployed, which mirrors all HTTP client requests.
+
+## Parameterization
+The demo application uses two Airlock metadata annotations:
+* waf.airlock.com/mapping.name: Specifies the name of the mapping created on Airlock WAF
+* waf.airlock.com/mapping.template.id: Contains the ID of the mapping template used
+
+The referenced mapping template is stored in the ConfigMap. The demo application retrieves the mapping template from the ConfigMap and imports it to Airlock WAF prior to creation of the mapping.
+
 
 ## Environment
 * Linux environment

@@ -1,24 +1,24 @@
 # Introduction
-To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or OpenShift environment. 
-Our recommendations are:
-* set Airlock WAF in front of a Kubernetes or OpenShift environment
+To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or OpenShift environment, our recommendations are:
+* place Airlock WAF in front of a Kubernetes or OpenShift environment
 * use Ingress in case of Kubernetes or Route in case of OpenShift
-* listen on Ingress or Route events and create a Airlock WAF configuration via REST API
+* listen on Ingress or Route events and create an Airlock WAF configuration via REST API
+* use metadata annotations and ConfigMap for parameterization
 
 ![Blueprint](docs/blueprint.png)
 
 
-This application listen to Ingress and Route events and build and activate a new 
-Airlock WAF configuration over the Airlock WAF REST API. It lives inside a Pod in a Kubernetes Worker Node.
+The demo application listens to Ingress and Route events. It builds and activates a new 
+Airlock WAF configuration using the Airlock WAF REST API and lives inside a Pod in a Kubernetes Worker Node.
 
 # Disclaimer
-Please understand, this Proof of Concept application is **NOT** for production use.
+This Proof of Concept application is **NOT** for production use.
 
 # Requirements
-* Airlock WAF 7.1
+* Airlock WAF 7.1 or newer
 * Airlock WAF JWT token (API Key)
 * Kubernetes or OpenShift
-* Airlock WAF and Kubernetes/OpenShift need to be in same sub network
+* Airlock WAF and Kubernetes/OpenShift need to be in the same sub network
 
 # Software Architecture Hints
 * Based on [Spring Boot](https://spring.io/projects/spring-boot)
@@ -28,12 +28,20 @@ Please understand, this Proof of Concept application is **NOT** for production u
 * The official Kubernetes [Java Client](https://github.com/kubernetes-client/java) is used to communicate with the API Server
 * The OpenShift [Route REST API](https://docs.openshift.com/container-platform/3.7/rest_api/apis-route.openshift.io/v1.Route.html) 
 has been implemented in _OpenShiftV1Api.java_
-* It use Client Certificate authentication to authenticate against the Kubernetes API Server
+* It uses a client certificate to authenticate against the Kubernetes API Server
 
 # Tutorial
-The following chapters describe how to test the setup in a local environment. In case of Kubernetes 
-it requires minikube and the ingress addon and in case of OpenShift in requires minishift. As back-end application a
-http echo server will be deployed, which mirror the http client request.
+The following sections describe how to test the setup in a local environment. In case of Kubernetes 
+it requires minikube and the ingress addon and in case of OpenShift it requires minishift. As back-end application an
+HTTP echo server will be deployed, which mirrors all HTTP client requests.
+
+## Parameterization
+The demo application uses two Airlock metadata annotations:
+* waf.airlock.com/mapping.name: Specifies the name of the mapping created on Airlock WAF
+* waf.airlock.com/mapping.template.id: Contains the ID of the mapping template used
+
+The referenced mapping template is stored in the ConfigMap. The demo application retrieves the mapping template from the ConfigMap and imports it to Airlock WAF prior to creation of the mapping.
+
 
 ## Environment
 * Linux environment
@@ -53,7 +61,7 @@ http echo server will be deployed, which mirror the http client request.
 1. Build and deploy the event listener application: `./kubernetes-setup.sh --add-event-listener`
 1. Deploy mirror back-end application: `./kubernetes-setup.sh --add-backend`
 1. Enable ingress to mirror application: `./kubernetes-setup.sh --add-ingress`
-1. Verify that the event listener application collect the ingress event: `./kubernetes-setup.sh --show-event-listener-logs`
+1. Verify that the event listener application collects the ingress event: `./kubernetes-setup.sh --show-event-listener-logs`
 1. HTTP request over the Airlock WAF: `curl -vk "${AIRLOCK_WAF_IP}:8080" -H "Host: myminikube.info"`
 
 ## OpenShift

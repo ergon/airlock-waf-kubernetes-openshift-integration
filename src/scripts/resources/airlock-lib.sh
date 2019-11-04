@@ -65,13 +65,18 @@ function cleanUpHistory() {
     abortOnError
 
     echo "activate configuration..."
-    ${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations/activate" \
+    STATUS_CODE=`${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations/activate" \
+        -w "%{http_code}" \
         -X POST \
         -H 'Content-Type: application/json' \
         -L -b ${COOKIE} \
         -H 'Accept: application/json' \
-        -d "{ \"comment\" : \"${ACTIVATION_COMMENT}\" }"
+        -d "{ \"comment\" : \"${ACTIVATION_COMMENT}\" }"`
     abortOnError "activate configuration"
+    if [[ ${STATUS_CODE} -ne 200 ]]; then
+        echo "ERROR: An error occur during activation. HTTP Status code ${STATUS_CODE}"
+        exit 1
+    fi
 
     for CONFIG_ID in ${CONFIG_IDS}
     do

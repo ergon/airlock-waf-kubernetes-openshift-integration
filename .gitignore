@@ -1,3 +1,7 @@
+build/
 .gradle/
 .idea/
+
 src/main/resources/airlock-waf-jwt.token
+src/main/resources/client.crt
+src/main/resources/client.key

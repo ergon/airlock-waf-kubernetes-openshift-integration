@@ -12,7 +12,7 @@ function abortOnError() {
 
 function createWAFConfiguration() {
 
-    TMP_DIR=`mktemp -d`
+    TMP_DIR=$(mktemp -d)
     CONFIG_ZIP_PATH="${TMP_DIR}/${CONFIG_ZIP_FILE_NAME}"
     KUBERNETES_IP=$1
 
@@ -28,7 +28,7 @@ function createWAFConfiguration() {
 
 function cleanUpHistory() {
     CURL="curl --insecure --silent"
-    JWT_TOKEN=`cat ${JWT_TOKEN_FILE}`
+    JWT_TOKEN=$(cat ${JWT_TOKEN_FILE})
 
     echo "create session..."
     rm -f ${COOKIE}
@@ -40,11 +40,11 @@ function cleanUpHistory() {
     abortOnError
 
     echo "collect all activated configurations..."
-    CONFIG_IDS=`${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations" \
+    CONFIG_IDS=$(${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations" \
         -X GET \
         -L -b ${COOKIE} \
         -H 'Accept: application/json' \
-        | jq '.data[] | select(.attributes.configType!="INITIAL") | .id'`
+        | jq '.data[] | select(.attributes.configType!="INITIAL") | .id')
     abortOnError
 
     echo "load current active configuration..."
@@ -65,22 +65,23 @@ function cleanUpHistory() {
     abortOnError
 
     echo "activate configuration..."
-    STATUS_CODE=`${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations/activate" \
+    STATUS_CODE=$(${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations/activate" \
         -w "%{http_code}" \
+        -o /dev/null \
         -X POST \
         -H 'Content-Type: application/json' \
         -L -b ${COOKIE} \
         -H 'Accept: application/json' \
-        -d "{ \"comment\" : \"${ACTIVATION_COMMENT}\" }"`
+        -d "{ \"comment\" : \"${ACTIVATION_COMMENT}\" }")
     abortOnError "activate configuration"
-    if [[ ${STATUS_CODE} -ne 200 ]]; then
+    if [[ "${STATUS_CODE}" -ne 200 ]]; then
         echo "ERROR: An error occur during activation. HTTP Status code ${STATUS_CODE}"
         exit 1
     fi
 
     for CONFIG_ID in ${CONFIG_IDS}
     do
-        ID=`echo ${CONFIG_ID} | sed 's/"//g'`
+        ID=$(echo ${CONFIG_ID} | sed 's/"//g')
         echo "delete legacy configuration with ID ${ID}"
         ${CURL} "https://${AIRLOCK}/airlock/rest/configuration/configurations/${ID}" \
             -X DELETE \

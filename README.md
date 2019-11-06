@@ -51,7 +51,7 @@ The referenced mapping template is stored in the ConfigMap. The demo application
 
 ## Airlock WAF
 1. Start minikube or minishift
-1. Copy the Airlock WAF JWT token (API Key) in `src/main/resources/airlock-waf-jwt.token`
+1. Copy the Airlock WAF JWT token (API Key) in `event-listener/src/main/resources/airlock-waf-jwt.token`
 1. The default IP of the WAF host is '192.168.99.50'. To change this edit `src/main/resources/application.properties` accordingly
 1. Set environment variable 'AIRLOCK_WAF_IP' in the shell which will be used for the tasks below: `AIRLOCK_WAF_IP="192.168.99.50"`
 

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: kuberntes-event-listener
-        image: com.airlock.waf.kubernetes/poc-kubernetes-event-listener:latest
+        image: com.airlock.waf.kubernetes/event-listener:latest
         imagePullPolicy: Never
         env:
           - name: SPRING_PROFILES_ACTIVE

@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes.config.rs.client;
+package com.airlock.waf.client.config.rs.client;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

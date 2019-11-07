@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes;
+package com.airlock.waf.client;
 
 import ch.ergon.restal.jsonapi.jackson.JsonApiJacksonConfigurator;
 import com.fasterxml.jackson.annotation.JsonInclude;

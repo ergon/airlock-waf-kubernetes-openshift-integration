@@ -1,10 +1,10 @@
-package com.airlock.waf.kubernetes.config.rs.client;
+package com.airlock.waf.client.config.rs.client;
 
 import ch.ergon.restal.jsonapi.document.data.CollectionDocument;
 import ch.ergon.restal.jsonapi.document.data.ResourceObject;
-import com.airlock.waf.kubernetes.Context;
-import com.airlock.waf.kubernetes.config.rs.transfer.ActivationCommentDto;
-import com.airlock.waf.kubernetes.config.rs.transfer.ConfigFileDto;
+import com.airlock.waf.client.Context;
+import com.airlock.waf.client.config.rs.transfer.ActivationCommentDto;
+import com.airlock.waf.client.config.rs.transfer.ConfigFileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.ResponseEntity;

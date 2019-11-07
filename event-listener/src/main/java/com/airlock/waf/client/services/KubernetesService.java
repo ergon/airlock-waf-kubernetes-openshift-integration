@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes.services;
+package com.airlock.waf.client.services;
 
 import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Call;

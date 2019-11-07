@@ -1,12 +1,12 @@
-package com.airlock.waf.kubernetes;
+package com.airlock.waf.client;
 
-import com.airlock.waf.kubernetes.domain.ActivationEvent;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Annotation;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Path;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Rule;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Specification;
-import com.airlock.waf.kubernetes.services.AirlockConfigurationService;
-import com.airlock.waf.kubernetes.services.KubernetesService;
+import com.airlock.waf.client.domain.ActivationEvent;
+import com.airlock.waf.client.domain.ActivationEvent.Annotation;
+import com.airlock.waf.client.domain.ActivationEvent.Path;
+import com.airlock.waf.client.domain.ActivationEvent.Rule;
+import com.airlock.waf.client.domain.ActivationEvent.Specification;
+import com.airlock.waf.client.services.AirlockConfigurationService;
+import com.airlock.waf.client.services.KubernetesService;
 import io.kubernetes.client.ApiException;
 import io.kubernetes.client.models.V1Namespace;
 import io.kubernetes.client.models.V1beta1HTTPIngressPath;
@@ -14,7 +14,6 @@ import io.kubernetes.client.models.V1beta1Ingress;
 import io.kubernetes.client.models.V1beta1IngressRule;
 import io.kubernetes.client.util.Watch;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

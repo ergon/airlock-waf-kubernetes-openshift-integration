@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes;
+package com.airlock.waf.client;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

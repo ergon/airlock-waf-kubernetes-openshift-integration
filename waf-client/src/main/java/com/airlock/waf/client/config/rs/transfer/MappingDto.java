@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes.config.rs.transfer;
+package com.airlock.waf.client.config.rs.transfer;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.*;

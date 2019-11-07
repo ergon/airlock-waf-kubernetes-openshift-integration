@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes;
+package com.airlock.waf.client;
 
 import com.google.common.io.Resources;
 import io.kubernetes.client.util.Config;

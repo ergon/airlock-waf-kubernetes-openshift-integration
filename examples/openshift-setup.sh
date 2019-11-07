@@ -43,6 +43,11 @@ while [[ $# -gt 0 ]]; do
  	esac
 done
 
+WORKSPACE=`pwd`
+ROOT_PROJECT=${WORKSPACE}/..
+OPENSHIFT_CONFIGS=${WORKSPACE}/kubernetes/config
+EVENT_LISTENER_RESOURCES=${ROOT_PROJECT}/event-listener/src/main/resources
+
 if [[ ${CLEAN} ]]; then
     cleanup
 fi

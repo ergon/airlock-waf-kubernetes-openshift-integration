@@ -1,6 +1,6 @@
-package com.airlock.waf.kubernetes.services;
+package com.airlock.waf.client.services;
 
-import com.airlock.waf.kubernetes.apis.OpenShiftV1Api;
+import com.airlock.waf.client.apis.OpenShiftV1Api;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Call;
 import io.kubernetes.client.ApiClient;

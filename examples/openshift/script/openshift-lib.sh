@@ -32,8 +32,9 @@ function prepare() {
 function cleanup() {
     prepare
     echo "clean up..."
-    rm -f src/main/resources/client.crt
-    rm -f src/main/resources/client.key
+    rm -f ${EVENT_LISTENER_RESOURCES}/client.crt
+    rm -f ${EVENT_LISTENER_RESOURCES}/client.key
+    rm -f ${EVENT_LISTENER_RESOURCES}/client.key
 
     oc delete deployments,routes,services,pods -l 'partition=poc' --now=true --cascade=true
     until [[ -z `oc get routes,services,pods,deployments -l 'partition=poc' -o jsonpath='{.items[*].metadata.name}'` ]];
@@ -66,29 +67,30 @@ function cleanup() {
 function build() {
     prepare
     echo "build event listener..."
-    cp ~/.minikube/client.crt src/main/resources/client.crt
-    cp ~/.minikube/client.key src/main/resources/client.key
+    cp ~/.minikube/client.crt ${EVENT_LISTENER_RESOURCES}/client.crt
+    cp ~/.minikube/client.key ${EVENT_LISTENER_RESOURCES}/client.key
+    cd ${ROOT_PROJECT}
     ./gradlew clean build docker -q
 }
 
 function deployEventListener() {
     prepare
     echo "deploy event listener to minishift node..."
-    oc create -f src/openshift/resources/ingress-event-listener-deployment.yaml
+    oc create -f ${OPENSHIFT_CONFIGS}/ingress-event-listener-deployment.yaml
 }
 
 function deployBackEndApplication() {
     prepare
     echo "deploy demo back-end application..."
-    docker build -q -f src/openshift/resources/Dockerfile.echoserver -t com.airlock.waf/echoserver:1.0-SNAPSHOT .
-    oc create -f src/openshift/resources/echo-server-deployment.yaml
-    oc create -f src/openshift/resources/echo-server-service.yaml
+    docker build -q -f {OPENSHIFT_CONFIGS}/Dockerfile.echoserver -t com.airlock.waf/echoserver:1.0-SNAPSHOT .
+    oc create -f {OPENSHIFT_CONFIGS}/echo-server-deployment.yaml
+    oc create -f {OPENSHIFT_CONFIGS}/echo-server-service.yaml
 }
 
 function configureRoute() {
     prepare
     echo "configure route..."
-    oc create -f src/openshift/resources/echo-server-route.yaml
+    oc create -f {OPENSHIFT_CONFIGS}/echo-server-route.yaml
     POD_NAME=`kubectl get pods -l 'app=k8s-event' -o jsonpath='{.items[*].metadata.name}'`
 }
 

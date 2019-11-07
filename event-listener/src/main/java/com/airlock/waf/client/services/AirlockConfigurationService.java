@@ -1,13 +1,13 @@
-package com.airlock.waf.kubernetes.services;
+package com.airlock.waf.client.services;
 
-import com.airlock.waf.kubernetes.Context;
-import com.airlock.waf.kubernetes.config.rs.client.AirlockWAFClient;
-import com.airlock.waf.kubernetes.config.rs.transfer.MappingDto;
-import com.airlock.waf.kubernetes.config.rs.transfer.VirtualHostDto;
-import com.airlock.waf.kubernetes.domain.ActivationEvent;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Path;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Rule;
-import com.airlock.waf.kubernetes.domain.ActivationEvent.Specification;
+import com.airlock.waf.client.Context;
+import com.airlock.waf.client.config.rs.client.AirlockWAFClient;
+import com.airlock.waf.client.config.rs.transfer.MappingDto;
+import com.airlock.waf.client.config.rs.transfer.VirtualHostDto;
+import com.airlock.waf.client.domain.ActivationEvent;
+import com.airlock.waf.client.domain.ActivationEvent.Path;
+import com.airlock.waf.client.domain.ActivationEvent.Rule;
+import com.airlock.waf.client.domain.ActivationEvent.Specification;
 import io.kubernetes.client.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

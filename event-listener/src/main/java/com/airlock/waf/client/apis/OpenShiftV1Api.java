@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes.apis;
+package com.airlock.waf.client.apis;
 
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;

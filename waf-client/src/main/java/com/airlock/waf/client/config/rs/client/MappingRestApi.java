@@ -1,10 +1,10 @@
-package com.airlock.waf.kubernetes.config.rs.client;
+package com.airlock.waf.client.config.rs.client;
 
 
 import ch.ergon.restal.jsonapi.document.data.ResourceDocument;
-import com.airlock.waf.kubernetes.Context;
-import com.airlock.waf.kubernetes.config.rs.transfer.CollectionRelationshipDocument;
-import com.airlock.waf.kubernetes.config.rs.transfer.MappingDto;
+import com.airlock.waf.client.Context;
+import com.airlock.waf.client.config.rs.transfer.CollectionRelationshipDocument;
+import com.airlock.waf.client.config.rs.transfer.MappingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -14,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.inject.Provider;
 
-import static com.airlock.waf.kubernetes.config.rs.transfer.CollectionRelationshipDocument.collectionRelationshipDocumentBuilder;
-import static com.airlock.waf.kubernetes.config.rs.transfer.MappingDto.MAPPING_TYPE;
+import static com.airlock.waf.client.config.rs.transfer.CollectionRelationshipDocument.collectionRelationshipDocumentBuilder;
+import static com.airlock.waf.client.config.rs.transfer.MappingDto.MAPPING_TYPE;
 import static org.springframework.http.HttpMethod.*;
 
 @Component

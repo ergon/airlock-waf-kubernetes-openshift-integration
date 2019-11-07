@@ -1,4 +1,4 @@
-package com.airlock.waf.kubernetes.domain;
+package com.airlock.waf.client.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

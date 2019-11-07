@@ -1,0 +1,27 @@
+dependencies {
+	implementation(
+			'org.springframework.boot:spring-boot-starter-integration',
+			'org.springframework.boot:spring-boot-starter-web'
+	)
+	compileOnly(
+			'org.projectlombok:lombok'
+	)
+	compile (
+			'io.kubernetes:client-java:2.0.0',
+			'ch.ergon:restal-jsonapi:1.0.3',
+			'org.apache.httpcomponents:httpclient:4.5.6',
+			'javax.inject:javax.inject:1'
+	)
+}
+
+jar {
+	enabled = true
+}
+
+bootJar {
+	enabled = false
+}
+
+test {
+	useJUnitPlatform()
+}

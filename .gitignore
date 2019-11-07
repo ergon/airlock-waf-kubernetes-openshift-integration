@@ -1,7 +1,9 @@
 build/
 .gradle/
 .idea/
+event-listener/out/
+waf-client/out/
 
-src/main/resources/airlock-waf-jwt.token
-src/main/resources/client.crt
-src/main/resources/client.key
+event-listener/src/main/resources/airlock-waf-jwt.token
+event-listener/src/main/resources/client.crt
+event-listener/src/main/resources/client.key

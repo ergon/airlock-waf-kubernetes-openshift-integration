@@ -1,2 +1,4 @@
 rootProject.name = 'poc-kubernetes-event-listener'
 
+include 'waf-client'
+include 'event-listener'

@@ -8,13 +8,20 @@ dependencies {
 	)
 	compile (
 			'io.kubernetes:client-java:2.0.0',
-			'com.google.guava:guava:26.0-jre',
 			'ch.ergon:restal-jsonapi:1.0.3',
-			'org.reflections:reflections:0.9.9',
 			'org.apache.httpcomponents:httpclient:4.5.6',
-			'com.fasterxml.jackson.core:jackson-annotations:2.9.4',
-			'com.fasterxml.jackson.core:jackson-core:2.9.4',
-			'com.fasterxml.jackson.core:jackson-databind:2.9.4',
 			'javax.inject:javax.inject:1'
 	)
+}
+
+jar {
+	enabled = true
+}
+
+bootJar {
+	enabled = false
+}
+
+test {
+	useJUnitPlatform()
 }

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-. src/scripts/resources/airlock-lib.sh
+. airlock/airlock-lib.sh
 
 AIRLOCK="192.168.99.50"
 BACKEND=minikube
@@ -20,7 +20,7 @@ usage()
 
 
 WORKSPACE=`pwd`
-JWT_TOKEN_FILE="${WORKSPACE}/event-listener/src/main/resources/airlock-waf-jwt.token"
+JWT_TOKEN_FILE="${WORKSPACE}/../event-listener/src/main/resources/airlock-waf-jwt.token"
 CONFIG_ZIP_FILE_NAME="airlock_waf_7_1_base_config.zip"
 ACTIVATION_COMMENT="Kubernetes Setup"
 COOKIE="/tmp/airlock.cookie"

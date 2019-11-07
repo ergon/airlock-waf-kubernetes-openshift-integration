@@ -1,4 +1,5 @@
 apply plugin: 'com.palantir.docker'
+apply plugin: 'org.springframework.boot'
 
 dependencies {
 	implementation(

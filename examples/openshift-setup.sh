@@ -1,11 +1,11 @@
 #!/bin/bash
 #
 
-. src/scripts/resources/kubernetes-lib.sh
+. openshift/script/openshift-lib.sh
 
 usage()
 {
- 	echo "Usage: $0 --clean|--add-event-listener|--add-backend|--add-ingress|--show-event-listener-logs"
+ 	echo "Usage: $0 --clean|--add-event-listener|--add-backend|--add-route|--show-event-listener-logs"
  	echo "   eg: $0 --clean"
  	exit 1
 }
@@ -28,9 +28,9 @@ while [[ $# -gt 0 ]]; do
  			shift 1
  			BACK_END=true
  			;;
-		--add-ingress)
+		--add-route)
 			shift 1
-			INGRESS=true
+			ROUTE=true
 			;;
 		--show-event-listener-logs)
 			shift 1
@@ -53,8 +53,8 @@ fi
 if [[ ${BACK_END} ]]; then
     deployBackEndApplication
 fi
-if [[ ${INGRESS} ]]; then
-    configureIngress
+if [[ ${ROUTE} ]]; then
+    configureRoute
 fi
 if [[ ${SHOW_LOGS} ]]; then
     showEventListenerLogs

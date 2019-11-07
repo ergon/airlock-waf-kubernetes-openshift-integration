@@ -17,8 +17,8 @@ function prepare() {
 function cleanup {
     prepare
     echo "clean up..."
-    rm -f src/main/resources/client.crt
-    rm -f src/main/resources/client.key
+    rm -f ${EVENT_LISTENER_RESOURCES}/client.crt
+    rm -f ${EVENT_LISTENER_RESOURCES}/client.key
     kubectl delete ing,services,pods,deployments -l 'partition=poc' --wait=true
 
     NOT_RUNNING_CONTAINER_IDS=( `docker ps --filter "status=exited" -q` )
@@ -45,28 +45,29 @@ function cleanup {
 function build() {
     prepare
     echo "build event listener..."
-    cp ~/.minikube/client.crt src/main/resources/client.crt
-    cp ~/.minikube/client.key src/main/resources/client.key
+    cp ~/.minikube/client.crt ${EVENT_LISTENER_RESOURCES}/client.crt
+    cp ~/.minikube/client.key ${EVENT_LISTENER_RESOURCES}/client.key
+    cd ${ROOT_PROJECT}
     ./gradlew clean build docker -q
 }
 
 function deployEventListener() {
     prepare
     echo "deploy event listener to kubernetes node..."
-    kubectl create -f src/kubernetes/resources/ingress-event-listener-deployment.yaml
+    kubectl create -f ${KUBERNETES_CONFIGS}/ingress-event-listener-deployment.yaml
 }
 
 function deployBackEndApplication() {
     prepare
     echo "deploy demo back-end application..."
-    kubectl create -f src/kubernetes/resources/echo-server-deployment.yaml
-    kubectl create -f src/kubernetes/resources/echo-server-service.yaml
+    kubectl create -f ${KUBERNETES_CONFIGS}/echo-server-deployment.yaml
+    kubectl create -f ${KUBERNETES_CONFIGS}/echo-server-service.yaml
 }
 
 function configureIngress() {
     prepare
     echo "configure ingress..."
-    kubectl create -f src/kubernetes/resources/echo-server-ingress.yaml
+    kubectl create -f ${KUBERNETES_CONFIGS}/echo-server-ingress.yaml
     POD_NAME=`kubectl get pods -l 'app=k8s-event' -o jsonpath='{.items[*].metadata.name}'`
 }
 

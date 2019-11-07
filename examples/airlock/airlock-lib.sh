@@ -19,8 +19,8 @@ function createWAFConfiguration() {
     trap "rm -rf ${TMP_DIR}" exit
 
     set -e
-    sed "s/\${MY_KUBERNETES_IP}/${KUBERNETES_IP}/g" src/waf/resources/template_alec_full.xml > ${TMP_DIR}/alec_full.xml
-    cp src/waf/resources/certificate_revocation_lists.zip ${TMP_DIR}
+    sed "s/\${MY_KUBERNETES_IP}/${KUBERNETES_IP}/g" ${WORKSPACE}/airlock/template_alec_full.xml > ${TMP_DIR}/alec_full.xml
+    cp ${WORKSPACE}/airlock/certificate_revocation_lists.zip ${TMP_DIR}
     cd ${TMP_DIR}
     zip ${CONFIG_ZIP_FILE_NAME} -q -r .
     cd ${WORKSPACE}

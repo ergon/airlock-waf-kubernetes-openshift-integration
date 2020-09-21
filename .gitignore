@@ -2,7 +2,9 @@ build/
 .gradle/
 .idea/
 event-listener/out/
+event-listener/target/
 waf-client/out/
+waf-client/target/
 
 event-listener/src/main/resources/airlock-waf-jwt.token
 event-listener/src/main/resources/client.crt

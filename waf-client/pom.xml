@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <modelVersion>4.0.0</modelVersion>
+ <artifactId>waf-client</artifactId>
+ <parent>
+  <groupId>com.airlock.waf.kubernetes</groupId>
+  <artifactId>root</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ </parent>
+
+ <dependencies>
+  <dependency>
+   <groupId>io.kubernetes</groupId>
+   <artifactId>client-java</artifactId>
+   <version>2.0.0</version>
+   <scope>compile</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.projectlombok</groupId>
+   <artifactId>lombok</artifactId>
+   <version>1.18.12</version>
+   <scope>provided</scope>
+  </dependency>
+  <dependency>
+   <groupId>ch.ergon</groupId>
+   <artifactId>restal-jsonapi</artifactId>
+   <version>1.0.3</version>
+   <scope>compile</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.apache.httpcomponents</groupId>
+   <artifactId>httpclient</artifactId>
+   <version>4.5.12</version>
+   <scope>compile</scope>
+  </dependency>
+  <dependency>
+   <groupId>javax.inject</groupId>
+   <artifactId>javax.inject</artifactId>
+   <version>1</version>
+   <scope>compile</scope>
+  </dependency>
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-integration</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
+  <dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+ </dependencies>
+ <build>
+  <plugins>
+   <plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+   </plugin>
+  </plugins>
+ </build>
+</project>

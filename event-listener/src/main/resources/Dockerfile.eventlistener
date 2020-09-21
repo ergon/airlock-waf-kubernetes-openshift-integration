@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM quay.balgroupit.com/baloise-base-images/openjdk:8-jdk-slim
 VOLUME /tmp
 ARG JAR_FILE
 COPY ${JAR_FILE} app.jar

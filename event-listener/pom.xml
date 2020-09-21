@@ -10,6 +10,10 @@
   <version>0.0.1-SNAPSHOT</version>
  </parent>
 
+ <properties>
+  <start-class>com.airlock.waf.client.Application</start-class>
+ </properties>
+
  <dependencies>
   <dependency>
    <groupId>com.airlock.waf.kubernetes</groupId>
@@ -73,11 +77,18 @@
    <artifactId>spring-boot-starter-web</artifactId>
   </dependency>
  </dependencies>
- <build>
+  <build>
   <plugins>
    <plugin>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+     <execution>
+      <goals>
+       <goal>repackage</goal>
+      </goals>
+     </execution>
+    </executions>
    </plugin>
   </plugins>
  </build>

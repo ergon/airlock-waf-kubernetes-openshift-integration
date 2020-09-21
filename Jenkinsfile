@@ -6,6 +6,12 @@ pipeline {
     tools {
         jdk 'JDK_1_8'
     }
+    
+    parameters {
+        booleanParam(defaultValue: true, 
+                     description: 'Flag whether quality checks should be performed.', 
+                     name: 'RUN_QUALITY_CHECKS')
+    }
 
     options {
         skipStagesAfterUnstable()
@@ -30,7 +36,22 @@ pipeline {
 
         stage("Maven") {
             steps {
-                mavenbuild()
+                mavenbuild uploadArtifactsWithBranchnameInVersion: true
+                
+                script {
+                    pomInfo = readMavenPom file: 'pom.xml'
+                    currentBuild.description = "${pomInfo.version}"
+                }
+            }
+        }
+
+        stage("Quality assurance") {
+            when {
+                expression { return params.RUN_QUALITY_CHECKS }
+            }
+
+            steps {
+                sonar()
             }
         }
     }

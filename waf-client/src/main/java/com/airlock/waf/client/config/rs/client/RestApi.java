@@ -20,9 +20,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public abstract class RestApi {
 
-    private Context context;
+    private final Context context;
 
-    private Provider<RestTemplate> restTemplate;
+    private final Provider<RestTemplate> restTemplate;
 
     protected <R> RequestDocument<R> toRequestDocument(R dto) {
         RequestDocument<R> doc = new RequestDocument<>();

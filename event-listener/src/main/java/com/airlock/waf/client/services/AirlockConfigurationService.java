@@ -8,7 +8,7 @@ import com.airlock.waf.client.domain.ActivationEvent;
 import com.airlock.waf.client.domain.ActivationEvent.Path;
 import com.airlock.waf.client.domain.ActivationEvent.Rule;
 import com.airlock.waf.client.domain.ActivationEvent.Specification;
-import io.kubernetes.client.ApiException;
+import io.kubernetes.client.openapi.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -22,11 +22,11 @@ public class AirlockConfigurationService {
 
     private Set<Specification> lastSpecifications;
 
-    private AirlockWAFClient client;
+    private final AirlockWAFClient client;
 
-    private Context context;
+    private final Context context;
 
-    private KubernetesService kubernetesService;
+    private final KubernetesService kubernetesService;
 
     @Autowired
     public AirlockConfigurationService(AirlockWAFClient client, Context context, KubernetesService kubernetesService) {

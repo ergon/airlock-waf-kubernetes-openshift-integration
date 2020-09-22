@@ -2,12 +2,12 @@ package com.airlock.waf.client.apis;
 
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
-import io.kubernetes.client.*;
-import io.kubernetes.client.apis.ExtensionsV1beta1Api;
-import io.kubernetes.client.models.V1ObjectMeta;
+import io.kubernetes.client.openapi.*;
+import io.kubernetes.client.openapi.apis.ExtensionsV1beta1Api;
+import io.kubernetes.client.openapi.models.V1ObjectMeta;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
-
+import okhttp3.Call;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +27,9 @@ public class OpenShiftV1Api extends ExtensionsV1beta1Api {
             "application/vnd.kubernetes.protobuf;stream=watch"
     };
 
-    private ApiClient apiClient = Configuration.getDefaultApiClient();
+    private final ApiClient apiClient = Configuration.getDefaultApiClient();
 
-    public com.squareup.okhttp.Call listRouteForAllNamespacesCall(
+    public Call listRouteForAllNamespacesCall(
             Integer limit,
             String pretty,
             Integer timeoutSeconds,
@@ -59,7 +59,9 @@ public class OpenShiftV1Api extends ExtensionsV1beta1Api {
         String localVarContentType = apiClient.selectHeaderContentType(new String[]{"*/*"});
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
-        String[] localVarAuthNames = new String[]{"BearerToken"};
+        Map<String, Object> localVarAuthNamesParams = new HashMap<>();
+        localVarAuthNamesParams.put("BearerToken", null);
+
         return apiClient.buildCall(
                 "/apis/route.openshift.io/v1/routes",
                 "GET",
@@ -68,8 +70,8 @@ public class OpenShiftV1Api extends ExtensionsV1beta1Api {
                 null,
                 localVarHeaderParams,
                 new HashMap<>(),
-                localVarAuthNames,
-                null);
+                localVarAuthNamesParams,
+                null,null);
     }
 
     public V1RouteList listRouteForAllNamespaces(Integer limit, String pretty, Integer timeoutSeconds, Boolean watch) throws ApiException {
@@ -78,12 +80,12 @@ public class OpenShiftV1Api extends ExtensionsV1beta1Api {
     }
 
     private ApiResponse<V1RouteList> listRouteForAllNamespacesWithHttpInfo(Integer limit, String pretty, Integer timeoutSeconds, Boolean watch) throws ApiException {
-        com.squareup.okhttp.Call call = listRouteForAllNamespacesValidateBeforeCall(limit, pretty, timeoutSeconds, watch);
+        Call call = listRouteForAllNamespacesValidateBeforeCall(limit, pretty, timeoutSeconds, watch);
         Type localVarReturnType = new TypeToken<V1RouteList>() {}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
-    private com.squareup.okhttp.Call listRouteForAllNamespacesValidateBeforeCall(Integer limit, String pretty, Integer timeoutSeconds, Boolean watch) throws ApiException {
+    private okhttp3.Call listRouteForAllNamespacesValidateBeforeCall(Integer limit, String pretty, Integer timeoutSeconds, Boolean watch) throws ApiException {
         return listRouteForAllNamespacesCall(limit, pretty, timeoutSeconds, watch);
     }
 

@@ -32,10 +32,10 @@ public class CollectionRelationshipDocument {
 	public static class RelationshipResourceObject {
 
 		@NotNull
-		private String type;
+		private final String type;
 
 		@NotNull
-		private String id;
+		private final String id;
 	}
 
 	public static CollectionRelationshipDocumentBuilder collectionRelationshipDocumentBuilder () {
@@ -46,7 +46,7 @@ public class CollectionRelationshipDocument {
 	@NoArgsConstructor(access = PRIVATE)
 	public static class CollectionRelationshipDocumentBuilder {
 
-		private List<RelationshipResourceObject> data = new ArrayList<>();
+		private final List<RelationshipResourceObject> data = new ArrayList<>();
 
 		public CollectionRelationshipDocumentBuilder relationship (String type, Long reference) {
 

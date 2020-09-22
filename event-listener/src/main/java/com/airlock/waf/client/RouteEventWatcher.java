@@ -7,8 +7,8 @@ import com.airlock.waf.client.domain.ActivationEvent.Specification;
 import com.airlock.waf.client.services.AirlockConfigurationService;
 import com.airlock.waf.client.apis.OpenShiftV1Api.V1Route;
 import com.airlock.waf.client.services.OpenShiftService;
-import io.kubernetes.client.ApiException;
-import io.kubernetes.client.models.V1Namespace;
+import io.kubernetes.client.openapi.ApiException;
+import io.kubernetes.client.openapi.models.V1Namespace;
 import io.kubernetes.client.util.Watch;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,9 @@ import static java.util.stream.Collectors.toSet;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RouteEventWatcher implements CommandLineRunner {
 
-    private AirlockConfigurationService airlockConfigurationService;
+    private final AirlockConfigurationService airlockConfigurationService;
 
-    private OpenShiftService openShiftService;
+    private final OpenShiftService openShiftService;
 
     @Override
     public void run(String... args) throws Exception {

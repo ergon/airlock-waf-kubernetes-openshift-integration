@@ -22,9 +22,9 @@ import java.nio.charset.Charset;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class Context {
 
-    private AirlockWAFContext waf;
+    private final AirlockWAFContext waf;
 
-    private KubernetesContext kubernetes;
+    private final KubernetesContext kubernetes;
 
     @Component
     @NoArgsConstructor(onConstructor = @__(@Autowired))

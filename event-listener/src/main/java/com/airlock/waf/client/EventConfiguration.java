@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import io.kubernetes.client.ApiClient;
+import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.util.Config;
 import io.kubernetes.client.util.credentials.ClientCertificateAuthentication;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 @Configuration
@@ -39,10 +38,10 @@ public class EventConfiguration {
     public ApiClient apiClient() throws IOException {
         ApiClient client = Config.defaultClient();
         client.setBasePath(context.kubernetes().apiServer());
-        client.getHttpClient().setReadTimeout(600, SECONDS);
+        client.setReadTimeout(6000);
         client.setVerifyingSsl(false);
         new ClientCertificateAuthentication(context.kubernetes().clientCertificate(), context.kubernetes().clientKey()).provide(client);
-        io.kubernetes.client.Configuration.setDefaultApiClient(client);
+        io.kubernetes.client.openapi.Configuration.setDefaultApiClient(client);
         return client;
     }
 

@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode
 public class ActivationEvent {
 
-    private String comment;
+    private final String comment;
 
-    private Set<Specification> specifications;
+    private final Set<Specification> specifications;
 
     @Getter
     @Builder
@@ -27,9 +27,9 @@ public class ActivationEvent {
     @EqualsAndHashCode
     public static class Specification {
 
-        private List<Rule> rules;
+        private final List<Rule> rules;
 
-        private Annotation annotation;
+        private final Annotation annotation;
 
     }
 
@@ -37,7 +37,7 @@ public class ActivationEvent {
     @EqualsAndHashCode
     public static class Annotation {
 
-        private Map<String, String> metaData;
+        private final Map<String, String> metaData;
 
         private Annotation(Map<String, String> metaData) {
 
@@ -63,9 +63,9 @@ public class ActivationEvent {
     @EqualsAndHashCode
     public static class Rule {
 
-        private String host;
+        private final String host;
 
-        private List<Path> paths;
+        private final List<Path> paths;
     }
 
     @Getter
@@ -74,8 +74,8 @@ public class ActivationEvent {
     @EqualsAndHashCode
     public static class Path {
 
-        private String path;
+        private final String path;
 
-        private String backendServiceName;
+        private final String backendServiceName;
     }
 }

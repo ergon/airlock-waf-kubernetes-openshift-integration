@@ -2,10 +2,10 @@ package com.airlock.waf.client.services;
 
 import com.airlock.waf.client.apis.OpenShiftV1Api;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.okhttp.Call;
-import io.kubernetes.client.ApiClient;
-import io.kubernetes.client.ApiException;
-import io.kubernetes.client.models.V1Namespace;
+import okhttp3.Call;
+import io.kubernetes.client.openapi.ApiClient;
+import io.kubernetes.client.openapi.ApiException;
+import io.kubernetes.client.openapi.models.V1Namespace;
 import io.kubernetes.client.util.Watch;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class OpenShiftService {
 
-    private ApiClient apiClient;
+    private final ApiClient apiClient;
 
     /**
      * Returns a ObjectShift Route Watch Object.

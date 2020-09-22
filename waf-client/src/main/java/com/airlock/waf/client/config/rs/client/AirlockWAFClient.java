@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AirlockWAFClient {
 
-    private SessionRestApi sessionRestApi;
+    private final SessionRestApi sessionRestApi;
 
-    private ConfigurationRestApi configurationRestApi;
+    private final ConfigurationRestApi configurationRestApi;
 
-    private VirtualHostRestApi virtualHostRestApi;
+    private final VirtualHostRestApi virtualHostRestApi;
 
-    private MappingRestApi mappingRestApi;
+    private final MappingRestApi mappingRestApi;
 
-    private BackendGroupRestApi backendGroupRestApi;
+    private final BackendGroupRestApi backendGroupRestApi;
 
     public SessionRestApi session() {
 

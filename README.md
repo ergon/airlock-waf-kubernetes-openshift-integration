@@ -1,3 +1,5 @@
+![](https://github.com/ergon/airlock-waf-kubernetes-openshift-integration/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 # Introduction
 To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or OpenShift environment, our recommendations are:
 * place Airlock WAF in front of a Kubernetes or OpenShift environment

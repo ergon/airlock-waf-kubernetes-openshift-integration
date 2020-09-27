@@ -1,6 +1,7 @@
-package com.airlock.waf.client;
+package com.airlock.waf.eventlistener;
 
 import ch.ergon.restal.jsonapi.jackson.JsonApiJacksonConfigurator;
+import com.airlock.waf.client.Context;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,7 +78,7 @@ public class EventConfiguration {
         defaultMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         defaultMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
 
-        JsonApiJacksonConfigurator.configure(defaultMapper, "com.airlock.waf.kubernetes.config.rs.transfer");
+        JsonApiJacksonConfigurator.configure(defaultMapper, "com.airlock.waf.client.config.rs.transfer");
         return defaultMapper;
     }
 

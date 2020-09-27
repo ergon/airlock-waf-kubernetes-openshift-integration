@@ -1,4 +1,4 @@
-package com.airlock.waf.client.apis;
+package com.airlock.waf.eventlistener.openshift;
 
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;

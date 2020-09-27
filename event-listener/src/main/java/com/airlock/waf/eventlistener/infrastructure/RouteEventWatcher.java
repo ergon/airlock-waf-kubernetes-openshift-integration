@@ -1,12 +1,12 @@
-package com.airlock.waf.client;
+package com.airlock.waf.eventlistener.infrastructure;
 
-import com.airlock.waf.client.domain.ActivationEvent;
-import com.airlock.waf.client.domain.ActivationEvent.Path;
-import com.airlock.waf.client.domain.ActivationEvent.Rule;
-import com.airlock.waf.client.domain.ActivationEvent.Specification;
-import com.airlock.waf.client.services.AirlockConfigurationService;
-import com.airlock.waf.client.apis.OpenShiftV1Api.V1Route;
-import com.airlock.waf.client.services.OpenShiftService;
+import com.airlock.waf.eventlistener.domain.ActivationEvent;
+import com.airlock.waf.eventlistener.domain.ActivationEvent.Path;
+import com.airlock.waf.eventlistener.domain.ActivationEvent.Rule;
+import com.airlock.waf.eventlistener.domain.ActivationEvent.Specification;
+import com.airlock.waf.eventlistener.services.AirlockConfigurationService;
+import com.airlock.waf.eventlistener.openshift.OpenShiftV1Api.V1Route;
+import com.airlock.waf.eventlistener.services.OpenShiftService;
 import io.kubernetes.client.ApiException;
 import io.kubernetes.client.models.V1Namespace;
 import io.kubernetes.client.util.Watch;

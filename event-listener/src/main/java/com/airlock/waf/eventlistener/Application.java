@@ -1,4 +1,4 @@
-package com.airlock.waf.client;
+package com.airlock.waf.eventlistener;
 
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

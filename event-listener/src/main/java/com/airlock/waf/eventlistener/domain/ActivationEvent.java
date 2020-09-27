@@ -1,4 +1,4 @@
-package com.airlock.waf.client.domain;
+package com.airlock.waf.eventlistener.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

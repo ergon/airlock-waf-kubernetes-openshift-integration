@@ -1,9 +1,8 @@
 ![](https://github.com/ergon/airlock-waf-kubernetes-openshift-integration/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
 # DEPRECATED
-This repository is no longer supported.
-To protect your Kubernetes workload, consider [Airlock Microgateway](https://www.airlock.com/microgateway).
-To automate your Gateway configuration, consider the [Airlock Gateway](https://www.airlock.com/gateway) REST API.
+This repository was archived on 2023-07-27. It is no longer maintained because there is now a cloud-native alternative to protect your Kubernetes workload: [Airlock Microgateway](https://www.airlock.com/en/microgateway)
+If you continue to use [Airlock Gateway](https://www.airlock.com/en/gateway), consider automating its configuration using the Airlock Gateway REST API.
 * [Airlock Gateway documentation](https://docs.airlock.com/gateway/latest/)
 * [Airlock Gateway REST API reference](https://docs.airlock.com/gateway/latest/rest-api/config-rest-api.html)
 

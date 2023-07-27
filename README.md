@@ -1,5 +1,12 @@
 ![](https://github.com/ergon/airlock-waf-kubernetes-openshift-integration/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
+# DEPRECATED
+This repository is no longer supported.
+To protect your Kubernetes workload, consider [Airlock Microgateway](https://www.airlock.com/microgateway).
+To automate your Gateway configuration, consider the [Airlock Gateway](https://www.airlock.com/gateway) REST API.
+* [Airlock Gateway documentation](https://docs.airlock.com/gateway/latest/)
+* [Airlock Gateway REST API reference](https://docs.airlock.com/gateway/latest/rest-api/config-rest-api.html)
+
 # Introduction
 To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or OpenShift environment, our recommendations are:
 * place Airlock WAF in front of a Kubernetes or OpenShift environment
@@ -9,7 +16,7 @@ To use Airlock WAF as Reverse Proxy without human interaction in a Kubernetes or
 
 ![Blueprint](docs/blueprint.png)
 
-The demo application listens to Ingress and Route events. It builds and activates a new 
+The demo application listens to Ingress and Route events. It builds and activates a new
 Airlock WAF configuration using the Airlock WAF REST API and lives inside a Pod in a Kubernetes Worker Node.
 
 # Disclaimer
@@ -27,7 +34,7 @@ This Proof of Concept application is **NOT** for production use.
     * Kuberentes: _IngressEventWatcher.java_
     * Openshift: _RouteEventWatcher.java_
 * The official Kubernetes [Java Client](https://github.com/kubernetes-client/java) is used to communicate with the API Server
-* The OpenShift [Route REST API](https://docs.openshift.com/container-platform/3.7/rest_api/apis-route.openshift.io/v1.Route.html) 
+* The OpenShift [Route REST API](https://docs.openshift.com/container-platform/3.7/rest_api/apis-route.openshift.io/v1.Route.html)
 has been implemented in _OpenShiftV1Api.java_
 * It uses a client certificate to authenticate against the Kubernetes API Server
 
